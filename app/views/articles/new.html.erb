@@ -1,0 +1,22 @@
+<h1>New Article</h1>
+
+<!--  tells the form_for helper what this form is for --> 
+<%= form_for :article, url: articles_path do |f| %> 
+<!-- 
+The articles_path helper tells Rails to point the form to the URI Pattern associated with the articles prefix; and the form will (by default) send a POST request to that route. This is associated with the create action of the current controller, the ArticlesController. --> 
+	<p>
+		<%= f.label :title %><br>
+		<%= f.text_field :title %> 
+	</p>
+
+	<p>
+		<%= f.label :text %><br>
+		<%= f.text_area :text %>
+	</p>
+
+	<p>
+		<%= f.submit %>
+	</p>
+<% end %> 
+
+<%= link_to 'Back', articles_path %> 
