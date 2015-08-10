@@ -4,6 +4,20 @@
 <%= form_for :article, url: articles_path do |f| %> 
 <!-- 
 The articles_path helper tells Rails to point the form to the URI Pattern associated with the articles prefix; and the form will (by default) send a POST request to that route. This is associated with the create action of the current controller, the ArticlesController. --> 
+	<% if @article.errors.any? %> 
+		<div id="error_explanation">
+			<h2>
+				<%= pluralize(@article.errors.count, "error") %>
+				prohibited this article from being saved 
+			</h2>
+			<ul>
+				<% @article.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %> 
+			</ul>
+		</div>
+	<% end %> 
+	
 	<p>
 		<%= f.label :title %><br>
 		<%= f.text_field :title %> 
