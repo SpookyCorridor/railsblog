@@ -1,5 +1,14 @@
 class ArticlesController < ApplicationController
 	
+	# In the ArticlesController we need to have a way to block access 
+	# to the various actions if the person is not authenticated.
+
+	# we want the user to be authenticated on every action except 
+	# index and show, so we write that:
+
+	http_basic_authenticate_with: "dhh", password: "secret",
+	except: [:index, :show]
+
 	def index
 		@articles = Article.all 
 	end 
